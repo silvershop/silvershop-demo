@@ -27,8 +27,8 @@ if [ $? -eq 0 ]; then
 		mysql silvershopcore -e "DROP TABLE $t"
 	done
 
-	./vendor/bin/sake dev/build
-	./vendor/bin/sake dev/tasks/PopulateShopTask
+	php ./app/code/cli-script-docker-fixed.php dev/build
+	php ./app/code/cli-script-docker-fixed.php dev/tasks/PopulateShopTask
 
 	restore_htaccess
 else
