@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "89a0c222fc59054fb06217a4102d11c8",
+    "content-hash": "dec5c49d9c8d00128a015cfaa6d9d986",
     "packages": [
         {
             "name": "betterbrief/silverstripe-googlemapfield",
@@ -1274,12 +1274,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silvershop/silvershop-coloredvariations.git",
-                "reference": "81af036bbecf6249a4abb55f73632d66615ab003"
+                "reference": "4dae9841395de8910ed79dc3d6aa9cdc2741207f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silvershop/silvershop-coloredvariations/zipball/81af036bbecf6249a4abb55f73632d66615ab003",
-                "reference": "81af036bbecf6249a4abb55f73632d66615ab003",
+                "url": "https://api.github.com/repos/silvershop/silvershop-coloredvariations/zipball/4dae9841395de8910ed79dc3d6aa9cdc2741207f",
+                "reference": "4dae9841395de8910ed79dc3d6aa9cdc2741207f",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1289,7 @@
                 "phpunit/phpunit": "^5.7",
                 "squizlabs/php_codesniffer": "^3.0"
             },
-            "type": "silverstripe-module",
+            "type": "silverstripe-vendormodule",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.x-dev"
@@ -1302,6 +1302,9 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
             "authors": [
                 {
                     "name": "SilverShop Contributors",
@@ -1316,7 +1319,7 @@
                 "shop",
                 "silverstripe"
             ],
-            "time": "2018-07-06T00:21:36+00:00"
+            "time": "2018-07-06T00:23:01+00:00"
         },
         {
             "name": "silvershop/comparison",
@@ -1868,6 +1871,53 @@
                 "silverstripe"
             ],
             "time": "2018-05-08T21:03:17+00:00"
+        },
+        {
+            "name": "silverstripe-themes/simple",
+            "version": "3.2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe-themes/silverstripe-simple.git",
+                "reference": "5a6b34cd00a71047e905a8cb5d4b73713ca510c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe-themes/silverstripe-simple/zipball/5a6b34cd00a71047e905a8cb5d4b73713ca510c3",
+                "reference": "5a6b34cd00a71047e905a8cb5d4b73713ca510c3",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "silverstripe/framework": ">=3.5"
+            },
+            "type": "silverstripe-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                },
+                "expose": [
+                    "css",
+                    "images",
+                    "javascript",
+                    "webfonts"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sara Tušar (Innovaif)",
+                    "homepage": "http://www.saratusar.com"
+                }
+            ],
+            "description": "The SilverStripe simple theme (default SilverStripe 3 theme)",
+            "keywords": [
+                "silverstripe",
+                "theme"
+            ],
+            "time": "2018-06-25T20:55:43+00:00"
         },
         {
             "name": "silverstripe/admin",

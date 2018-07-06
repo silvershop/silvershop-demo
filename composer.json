@@ -1,6 +1,7 @@
 {
     "require": {
-        "silvershop/recipe": "1.0.x-dev"
+        "silvershop/recipe": "1.0.x-dev",
+        "silverstripe-themes/simple": "~3.2.0"
     },
     "config": {
         "process-timeout": 1200
