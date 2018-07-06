@@ -4,7 +4,7 @@
         "location": "local",
         "phase": "pre",
         "required": true
-    },
+    }],
     "exclude": {
         "patterns": [
             "/silverstripe-cache/*",
