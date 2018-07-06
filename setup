@@ -4,10 +4,10 @@
 # Redirect all traffic to the demo is resyncing 
 #
 mv ".htaccess" ".htaccess-backup"
-mv ".htaccess-updating" ".htaccess"
+cp ".htaccess-updating" ".htaccess"
 
 function restore_htaccess () {
-	mv ".htaccess" ".htaccess-updating"
+	rm ".htaccess"
 	mv ".htaccess-backup" ".htaccess"
 }
 
@@ -19,11 +19,19 @@ composer update
 
 if [ $? -eq 0 ]; then
 	# Drop the current database, run dev/build to repopulate the database.
-	mysql -e "SELECT concat('DROP TABLE IF EXISTS `', table_name, '`;') FROM information_schema.tables WHERE table_schema = 'silvershopcore';"
+	TABLES=$(mysql silvershopcore -e 'show tables' | awk '{ print $1}' | grep -v '^Tables' )
+ 
+	for t in $TABLES
+	do
+		echo "Deleting $t table from database..."
+		mysql silvershopcore -e "DROP TABLE $t"
+	done
+
 	./vendor/bin/sake dev/build
+	./vendor/bin/sake dev/tasks/PopulateShopTask
 
 	restore_htaccess
 else
 	# restore htaccess
 	restore_htaccess
-
+fi

@@ -1518,12 +1518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silvershop/silvershop-discounts.git",
-                "reference": "36e95b7b9cec31e52f5140f1eba5b629725da86f"
+                "reference": "e0fcba9b5e4fa628c2f8a82682e0cd6a92e950f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silvershop/silvershop-discounts/zipball/36e95b7b9cec31e52f5140f1eba5b629725da86f",
-                "reference": "36e95b7b9cec31e52f5140f1eba5b629725da86f",
+                "url": "https://api.github.com/repos/silvershop/silvershop-discounts/zipball/e0fcba9b5e4fa628c2f8a82682e0cd6a92e950f2",
+                "reference": "e0fcba9b5e4fa628c2f8a82682e0cd6a92e950f2",
                 "shasum": ""
             },
             "require": {
@@ -1568,7 +1568,7 @@
                 "shopping cart",
                 "silverstripe"
             ],
-            "time": "2018-06-26T06:51:49+00:00"
+            "time": "2018-07-06T02:32:19+00:00"
         },
         {
             "name": "silvershop/geocoding",
