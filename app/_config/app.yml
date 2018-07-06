@@ -1,5 +1,5 @@
 ---
-Name: myproject
+Name: app
 ---
 SilverStripe\Core\Manifest\ModuleManifest:
   project: mysite

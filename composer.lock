@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dec5c49d9c8d00128a015cfaa6d9d986",
+    "content-hash": "57088ed4e348d3f34b09d5df36ba2e99",
     "packages": [
         {
             "name": "betterbrief/silverstripe-googlemapfield",
@@ -940,6 +940,63 @@
             "time": "2017-01-08T16:58:11+00:00"
         },
         {
+            "name": "omnipay/dummy",
+            "version": "2.2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/omnipay-dummy.git",
+                "reference": "0ced02379aff446011ccde1392e641d9da436442"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/omnipay-dummy/zipball/0ced02379aff446011ccde1392e641d9da436442",
+                "reference": "0ced02379aff446011ccde1392e641d9da436442",
+                "shasum": ""
+            },
+            "require": {
+                "omnipay/common": "~2.0"
+            },
+            "require-dev": {
+                "omnipay/tests": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Omnipay\\Dummy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adrian Macneil",
+                    "email": "adrian@adrianmacneil.com"
+                },
+                {
+                    "name": "Omnipay Contributors",
+                    "homepage": "https://github.com/thephpleague/omnipay-dummy/contributors"
+                }
+            ],
+            "description": "Dummy driver for the Omnipay payment processing library",
+            "homepage": "https://github.com/thephpleague/omnipay-dummy",
+            "keywords": [
+                "Dummy",
+                "gateway",
+                "merchant",
+                "omnipay",
+                "pay",
+                "payment"
+            ],
+            "time": "2018-04-17T09:57:18+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.17",
             "source": {
@@ -1274,12 +1331,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silvershop/silvershop-coloredvariations.git",
-                "reference": "4dae9841395de8910ed79dc3d6aa9cdc2741207f"
+                "reference": "1c8b78b7c609ddab2100cc04faac9f5903eed3a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silvershop/silvershop-coloredvariations/zipball/4dae9841395de8910ed79dc3d6aa9cdc2741207f",
-                "reference": "4dae9841395de8910ed79dc3d6aa9cdc2741207f",
+                "url": "https://api.github.com/repos/silvershop/silvershop-coloredvariations/zipball/1c8b78b7c609ddab2100cc04faac9f5903eed3a2",
+                "reference": "1c8b78b7c609ddab2100cc04faac9f5903eed3a2",
                 "shasum": ""
             },
             "require": {
@@ -1319,7 +1376,7 @@
                 "shop",
                 "silverstripe"
             ],
-            "time": "2018-07-06T00:23:01+00:00"
+            "time": "2018-07-06T00:55:08+00:00"
         },
         {
             "name": "silvershop/comparison",
@@ -1327,12 +1384,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silvershop/silvershop-comparison.git",
-                "reference": "c7fa969b70e069642afed81fbe5823db8d560c95"
+                "reference": "5ef095e65d5fa22714d1071ff78a43b2ce917db0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silvershop/silvershop-comparison/zipball/c7fa969b70e069642afed81fbe5823db8d560c95",
-                "reference": "c7fa969b70e069642afed81fbe5823db8d560c95",
+                "url": "https://api.github.com/repos/silvershop/silvershop-comparison/zipball/5ef095e65d5fa22714d1071ff78a43b2ce917db0",
+                "reference": "5ef095e65d5fa22714d1071ff78a43b2ce917db0",
                 "shasum": ""
             },
             "require": {
@@ -1375,7 +1432,7 @@
                 "silvershop",
                 "silverstripe"
             ],
-            "time": "2018-07-05T23:55:01+00:00"
+            "time": "2018-07-06T00:46:43+00:00"
         },
         {
             "name": "silvershop/core",
@@ -1383,12 +1440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silvershop/silvershop-core.git",
-                "reference": "87a2f6f83238499e8128c37f78ac668c9aaccdab"
+                "reference": "6d827fa0750f675a8b85073ae99ac8110d457b68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silvershop/silvershop-core/zipball/87a2f6f83238499e8128c37f78ac668c9aaccdab",
-                "reference": "87a2f6f83238499e8128c37f78ac668c9aaccdab",
+                "url": "https://api.github.com/repos/silvershop/silvershop-core/zipball/6d827fa0750f675a8b85073ae99ac8110d457b68",
+                "reference": "6d827fa0750f675a8b85073ae99ac8110d457b68",
                 "shasum": ""
             },
             "require": {
@@ -1453,7 +1510,7 @@
                 "shopping cart",
                 "silverstripe"
             ],
-            "time": "2018-07-03T14:39:45+00:00"
+            "time": "2018-07-06T00:58:49+00:00"
         },
         {
             "name": "silvershop/discounts",
