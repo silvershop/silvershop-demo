@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+#
+# Redirect all traffic to the demo is resyncing 
+#
+mv ".htaccess" ".htaccess-backup"
+mv ".htaccess-updating" ".htaccess"
+
+function restore_htaccess () {
+	mv ".htaccess" ".htaccess-updating"
+	mv ".htaccess-backup" ".htaccess"
+}
+
+#
+# Check out the latest build of the recipe
+#
+
+composer update
+
+if [ $? -eq 0 ]; then
+	# Drop the current database, run dev/build to repopulate the database.
+	mysql -e "SELECT concat('DROP TABLE IF EXISTS `', table_name, '`;') FROM information_schema.tables WHERE table_schema = 'silvershopcore';"
+	./vendor/bin/sake dev/build
+
+	restore_htaccess
+else
+	# restore htaccess
+	restore_htaccess
+

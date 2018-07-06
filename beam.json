@@ -1,0 +1,27 @@
+{
+    "commands": [{
+        "command": "composer install --prefer-dist --no-dev",
+        "location": "local",
+        "phase": "pre",
+        "required": true
+    },
+    "exclude": {
+        "patterns": [
+            "/silverstripe-cache/*",
+            "*.tmp",
+            "/assets/",
+            "main.html",
+            "errors.log",
+            "install.php"
+        ]
+    },
+    "servers": {
+        "prod": {
+            "user": "silvershop",
+            "type": "rsync",
+            "host": "silvershop",
+            "webroot": "/container/application/public",
+            "branch": "remotes/origin/master"
+        },
+    }
+}

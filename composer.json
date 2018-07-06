@@ -1,0 +1,31 @@
+{
+    "require": {
+        "silvershop/recipe": "1.0.x-dev"
+    },
+    "config": {
+        "process-timeout": 1200
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:silvershop/recipe-silvershop.git"
+        }
+    ],
+    "extra": {
+        "project-files-installed": [
+            "mysite/.htaccess",
+            "mysite/_config.php",
+            "mysite/_config/mysite.yml",
+            "mysite/code/Page.php",
+            "mysite/code/PageController.php"
+        ],
+        "public-files-installed": [
+            ".htaccess",
+            "index.php",
+            "install-frameworkmissing.html",
+            "install.php",
+            "web.config"
+        ]
+    }
+}
