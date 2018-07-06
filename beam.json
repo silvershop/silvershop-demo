@@ -17,11 +17,11 @@
     },
     "servers": {
         "prod": {
-            "user": "silvershop",
+            "user": "silvershopcore",
             "type": "rsync",
             "host": "silvershop",
             "webroot": "/container/application/public",
             "branch": "remotes/origin/master"
-        },
+        }
     }
 }
