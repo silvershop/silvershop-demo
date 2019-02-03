@@ -1,8 +1,13 @@
 {
     "commands": [{
-        "command": "composer install --prefer-dist --no-dev",
+        "command": "composer install --prefer-dist",
         "location": "local",
         "phase": "pre",
+        "required": true
+    }, {
+        "command": "./setup",
+        "location": "target",
+        "phase": "post",
         "required": true
     }],
     "exclude": {

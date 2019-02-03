@@ -1,8 +1,10 @@
 {
+    "type": "silverstripe-project",
     "require": {
         "silvershop/recipe": "1.0.x-dev",
-        "silverstripe-themes/simple": "~3.2.0",
-        "omnipay/dummy": "^2"
+        "silverstripe-themes/simple": "^3.3",
+        "omnipay/dummy": "^2",
+        "dnadesign/silverstripe-populate": "dev-master"
     },
     "config": {
         "process-timeout": 1200
@@ -14,13 +16,24 @@
             "url": "git@github.com:silvershop/recipe-silvershop.git"
         }
     ],
+    "scripts": {
+        "lint": "phpcs --extensions=php app/ vendor/silvershop/",
+        "syntax-check": "find app/ vendor/silvershop -type f -name '*.php' -exec php -l {} \\;",
+        "lint-clean": "phpcbf app/ vendor/silvershop/"
+    },
     "extra": {
+        "expose": [
+            "themes/simple/css",
+            "themes/simple/images",
+            "themes/simple/javascript",
+            "themes/simple/webfonts"
+        ],
         "project-files-installed": [
-            "mysite/.htaccess",
-            "mysite/_config.php",
-            "mysite/_config/mysite.yml",
-            "mysite/code/Page.php",
-            "mysite/code/PageController.php"
+            "app/.htaccess",
+            "app/_config.php",
+            "app/_config/mysite.yml",
+            "app/code/Page.php",
+            "app/code/PageController.php"
         ],
         "public-files-installed": [
             ".htaccess",

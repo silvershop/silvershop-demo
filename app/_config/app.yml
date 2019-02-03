@@ -1,14 +1,15 @@
 ---
 Name: app
 ---
-SilverStripe\Core\Manifest\ModuleManifest:
-  project: mysite
-SilverStripe\Core\Injector\Injector:
-  Psr\Log\LoggerInterface: 
-    calls:
-      LogFileHandler: [ pushHandler, [ %$LogFileHandler ] ]
-  LogFileHandler:
-    class: Monolog\Handler\StreamHandler
-    constructor:
-      - "../silverstripe.log"
-      - "info"
+SilverShop\Model\Order:
+  modifiers:
+    - SilverShop\Shipping\ShippingFrameworkModifier
+SilverShop\Page\CheckoutPage:
+  steps:
+    'membership': 'SilverShop\Checkout\Step\Membership'
+    'contactdetails': 'SilverShop\Checkout\Step\ContactDetails'
+    'shippingaddress': 'SilverShop\Checkout\Step\Address'
+    'billingaddress': 'SilverShop\Checkout\Step\Address'
+    'shippingmethod': 'SilverShop\Shipping\Checkout\Step\CheckoutStepShippingMethod'
+    'paymentmethod': 'SilverShop\Checkout\Step\PaymentMethod'
+    'summary': 'SilverShop\Checkout\Step\Summary'
