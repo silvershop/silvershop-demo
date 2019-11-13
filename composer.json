@@ -23,6 +23,8 @@
     },
     "extra": {
         "expose": [
+			"app/css",
+			"app/js",
             "themes/simple/css",
             "themes/simple/images",
             "themes/simple/javascript",
@@ -33,7 +35,9 @@
             "app/_config.php",
             "app/_config/mysite.yml",
             "app/code/Page.php",
-            "app/code/PageController.php"
+            "app/code/PageController.php",
+            "app/src/Page.php",
+            "app/src/PageController.php"
         ],
         "public-files-installed": [
             ".htaccess",

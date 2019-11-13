@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Redirect all traffic to the demo is resyncing 
+# Redirect all traffic to the demo is resyncing
 #
 mv ".htaccess" ".htaccess-backup"
 cp ".htaccess-updating" ".htaccess"
@@ -20,15 +20,15 @@ composer update
 if [ $? -eq 0 ]; then
 	# Drop the current database, run dev/build to repopulate the database.
 	TABLES=$(mysql silvershopcore -e 'show tables' | awk '{ print $1}' | grep -v '^Tables' )
- 
+
 	for t in $TABLES
 	do
 		echo "Deleting $t table from database..."
 		mysql silvershopcore -e "DROP TABLE $t"
 	done
 
-	php ./app/code/cli-script-docker-fixed.php dev/build
-	php ./app/code/cli-script-docker-fixed.php dev/tasks/PopulateShopTask
+	php ./app/src/cli-script-docker-fixed.php dev/build
+	php ./app/src/cli-script-docker-fixed.php dev/tasks/PopulateShopTask
 
 	restore_htaccess
 else
