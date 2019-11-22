@@ -23,8 +23,8 @@
     },
     "extra": {
         "expose": [
-			"app/css",
-			"app/js",
+            "app/css",
+            "app/js",
             "themes/simple/css",
             "themes/simple/images",
             "themes/simple/javascript",

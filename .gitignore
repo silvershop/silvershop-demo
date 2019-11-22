@@ -1,6 +1,6 @@
 .DS_Store
 /assets
 /vendor
-/resources
+/public/resources
 /themes
 /.htaccess-backup

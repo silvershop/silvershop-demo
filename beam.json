@@ -14,9 +14,8 @@
         "patterns": [
             "/silverstripe-cache/*",
             "*.tmp",
-            "/assets/",
-            "main.html",
-            "errors.log",
+			"/public/assets/",
+			"errors.log",
             "install.php"
         ]
     },
@@ -25,7 +24,7 @@
             "user": "silvershopcore",
             "type": "rsync",
             "host": "silvershop",
-            "webroot": "/container/application/public",
+            "webroot": "/container/application",
             "branch": "remotes/origin/master"
         }
     }

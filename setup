@@ -3,19 +3,18 @@
 #
 # Redirect all traffic to the demo is resyncing
 #
-mv ".htaccess" ".htaccess-backup"
-cp ".htaccess-updating" ".htaccess"
+mv "public/.htaccess" "public/.htaccess-backup"
+cp "public/.htaccess-updating" "public/.htaccess"
 
 function restore_htaccess () {
-	rm ".htaccess"
-	mv ".htaccess-backup" ".htaccess"
+	rm "public/.htaccess"
+	mv "public/.htaccess-backup" "public/.htaccess"
 }
 
 #
-# Check out the latest build of the recipe
+# Check out the latest build of the recipe.
 #
-
-composer update
+composer update --no-interaction
 
 if [ $? -eq 0 ]; then
 	# Drop the current database, run dev/build to repopulate the database.
