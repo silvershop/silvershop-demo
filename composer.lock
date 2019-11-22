@@ -1818,12 +1818,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silvershop/recipe-silvershop.git",
-                "reference": "6b76a5581232d8258c46ba6ba468d8ad756e71f8"
+                "reference": "442c9129783259be6b6831234d48e91ad0d8da6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silvershop/recipe-silvershop/zipball/6b76a5581232d8258c46ba6ba468d8ad756e71f8",
-                "reference": "6b76a5581232d8258c46ba6ba468d8ad756e71f8",
+                "url": "https://api.github.com/repos/silvershop/recipe-silvershop/zipball/442c9129783259be6b6831234d48e91ad0d8da6c",
+                "reference": "442c9129783259be6b6831234d48e91ad0d8da6c",
                 "shasum": ""
             },
             "require": {
@@ -1834,7 +1834,7 @@
                 "silvershop/geocoding": "2.x-dev",
                 "silvershop/shipping": "2.x-dev",
                 "silvershop/stock": "2.x-dev",
-                "silverstripe/recipe-cms": "^4.2"
+                "silverstripe/recipe-cms": "^4.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7"
@@ -1857,7 +1857,7 @@
                 "source": "https://github.com/silvershop/recipe-silvershop/tree/master",
                 "issues": "https://github.com/silvershop/recipe-silvershop/issues"
             },
-            "time": "2019-08-21T18:53:42+00:00"
+            "time": "2019-11-22T08:30:53+00:00"
         },
         {
             "name": "silvershop/shipping",
@@ -2737,6 +2737,101 @@
             ],
             "description": "GraphQL server for SilverStripe models and other data",
             "time": "2019-11-21T01:05:05+00:00"
+        },
+        {
+            "name": "silverstripe/recipe-cms",
+            "version": "4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe/recipe-cms.git",
+                "reference": "ba2034c28265759cfdff0ad6043f7e56a8b52066"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe/recipe-cms/zipball/ba2034c28265759cfdff0ad6043f7e56a8b52066",
+                "reference": "ba2034c28265759cfdff0ad6043f7e56a8b52066",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/admin": "1.6.x-dev",
+                "silverstripe/asset-admin": "1.6.x-dev",
+                "silverstripe/campaign-admin": "1.6.x-dev",
+                "silverstripe/cms": "4.6.x-dev",
+                "silverstripe/errorpage": "1.6.x-dev",
+                "silverstripe/graphql": "3.3.x-dev",
+                "silverstripe/recipe-core": "4.6.x-dev",
+                "silverstripe/recipe-plugin": "^1.2",
+                "silverstripe/reports": "4.6.x-dev",
+                "silverstripe/siteconfig": "4.6.x-dev",
+                "silverstripe/versioned": "1.6.x-dev",
+                "silverstripe/versioned-admin": "1.4.x-dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "silverstripe-recipe",
+            "extra": {
+                "branch-alias": {
+                    "4.x-dev": "4.6.x-dev"
+                },
+                "project-files": [
+                    "app/src/*"
+                ],
+                "resources-dir": "_resources"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "SilverStripe recipe for fully featured page and asset content editing",
+            "homepage": "http://silverstripe.org",
+            "time": "2019-11-21T01:30:04+00:00"
+        },
+        {
+            "name": "silverstripe/recipe-core",
+            "version": "4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe/recipe-core.git",
+                "reference": "9857cc54efec2d213622ee2a0559a29f1190a8e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe/recipe-core/zipball/9857cc54efec2d213622ee2a0559a29f1190a8e6",
+                "reference": "9857cc54efec2d213622ee2a0559a29f1190a8e6",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/assets": "1.6.x-dev",
+                "silverstripe/config": "1.0.x-dev",
+                "silverstripe/framework": "4.6.x-dev",
+                "silverstripe/recipe-plugin": "^1.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "silverstripe-recipe",
+            "extra": {
+                "branch-alias": {
+                    "4.x-dev": "4.6.x-dev"
+                },
+                "project-files": [
+                    "app/*"
+                ],
+                "public-files": [
+                    ".htaccess",
+                    "web.config",
+                    "index.php"
+                ],
+                "resources-dir": "_resources"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "SilverStripe framework-only core recipe",
+            "homepage": "http://silverstripe.org",
+            "time": "2019-11-21T01:29:06+00:00"
         },
         {
             "name": "silverstripe/recipe-plugin",
