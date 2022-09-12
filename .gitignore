@@ -1,6 +1,7 @@
 .DS_Store
-/assets
 /vendor
-/public/resources
 /themes
 /.htaccess-backup
+/public/assets/
+/public/_resources/
+/public/_graphql/

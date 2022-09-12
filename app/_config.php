@@ -8,14 +8,12 @@ use SilverStripe\Core\Environment;
 // remove PasswordValidator for SilverStripe 5.0
 $validator = new PasswordValidator();
 
-$validator->minLength(8);
-$validator->checkHistoricalPasswords(6);
 Member::set_password_validator($validator);
 
 global $database;
 $database = ($name = Environment::getEnv('SS_DATABASE_NAME')) ? $name : 'silvershopcore';
 
-if (Director::isLive()) {
+if (Director::isLive() && isset($_SERVER['HTTPS'])) {
     if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
         if(!headers_sent()) {
             header("Status: 301 Moved Permanently");
