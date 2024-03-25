@@ -2,6 +2,7 @@
 /vendor
 /themes
 /.htaccess-backup
-/public/assets/
-/public/_resources/
-/public/_graphql/
+public/assets/
+public/_resources/
+public/_graphql/
+.graphql-generated

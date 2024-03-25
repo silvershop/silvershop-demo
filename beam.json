@@ -1,32 +1,35 @@
 {
-    "commands": [{
-        "command": "composer install --prefer-dist",
-        "location": "local",
-        "phase": "pre",
-        "required": true
-    }, {
-        "command": "./setup",
-        "location": "target",
-        "phase": "post",
-        "required": true
-    }],
-    "exclude": {
-        "patterns": [
-            "/silverstripe-cache/*",
-            "*.tmp",
-			"/public/assets/",
-			"errors.log",
-			".env",
-            "install.php"
-        ]
+  "commands": [
+    {
+      "command": "composer install --prefer-dist",
+      "location": "local",
+      "phase": "pre",
+      "required": true
     },
-    "servers": {
-        "prod": {
-            "user": "silvershopcore",
-            "type": "rsync",
-            "host": "silvershop",
-            "webroot": "/container/application",
-            "branch": "remotes/origin/master"
-        }
+    {
+      "command": "./setup",
+      "location": "target",
+      "phase": "post",
+      "required": false
     }
+  ],
+  "exclude": {
+    "patterns": [
+      "/silverstripe-cache/*",
+      "*.tmp",
+      "/public/assets/",
+      "errors.log",
+      ".env",
+      "install.php"
+    ]
+  },
+  "servers": {
+    "prod": {
+      "user": "silvershopcore",
+      "type": "rsync",
+      "host": "silvershop",
+      "webroot": "/container/application",
+      "branch": "remotes/origin/main"
+    }
+  }
 }
