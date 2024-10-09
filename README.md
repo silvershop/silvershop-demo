@@ -1,7 +1,7 @@
 # SilverShop Demo
 
-This repository contains the source code, composer and related files for 
-https://demo.silvershop.io. The demo is basically a setup of 
+This repository contains the source code, composer and related files for
+https://demo.silvershop.io. The demo is basically a setup of
 [recipe-silvershop](https://github.com/silvershop/recipe-silvershop) with the
 default content populated.
 
@@ -15,8 +15,23 @@ CMS login details are:
 	user: `silvershopcore`
 	pass: `silvershopcore`
 
-Any users spamming the system or found to be putting up content which is 
+Any users spamming the system or found to be putting up content which is
 inappropriate will have their IP addresses banned.
+
+## Local Development
+
+Local development is handled by [DDEV](https://ddev.com/). To start the
+application run
+
+```
+ddev start
+```
+
+Then load the project
+```
+ddev composer install
+ddev sake dev/build
+```
 
 ## Hosting
 

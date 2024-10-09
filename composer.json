@@ -1,13 +1,11 @@
 {
     "type": "silverstripe-project",
     "require": {
-        "silvershop/recipe": "1.2.x-dev",
+        "silvershop/recipe": "^4",
         "silverstripe-themes/simple": "^3",
         "omnipay/dummy": "^3",
-        "dnadesign/silverstripe-populate": "dev-master"
-    },
-    "require-dev": {
-        "silverstripe/serve": "^2"
+        "dnadesign/silverstripe-populate": "dev-master",
+        "php-http/guzzle7-adapter": "1.x-dev"
     },
     "config": {
         "process-timeout": 1200,
@@ -17,7 +15,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "silverstripe/recipe-plugin": true,
-            "silverstripe/vendor-plugin": true
+            "silverstripe/vendor-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "dev",

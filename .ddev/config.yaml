@@ -1,0 +1,14 @@
+name: silvershop-demo
+type: silverstripe
+docroot: public
+php_version: "8.2"
+webserver_type: apache-fpm
+xdebug_enabled: false
+additional_hostnames: []
+additional_fqdns: []
+database:
+    type: mariadb
+    version: "10.4"
+use_dns_when_possible: true
+composer_version: "2"
+web_environment: []
