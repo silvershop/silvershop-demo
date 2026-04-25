@@ -1,7 +1,7 @@
 {
     "type": "silverstripe-project",
     "require": {
-        "silvershop/recipe": "^4",
+        "silvershop/recipe": "^6",
         "silverstripe-themes/simple": "^3",
         "omnipay/dummy": "^3",
         "dnadesign/silverstripe-populate": "dev-master",

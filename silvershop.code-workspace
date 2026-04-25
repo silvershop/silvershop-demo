@@ -1,0 +1,35 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "workbench.colorCustomizations": {
+            "titleBar.activeBackground": "#015AE1",
+            "titleBar.activeForeground": "#ffffff"
+        },
+        "files.exclude": {
+            "**/node_modules": true,
+            "**/bower_components": true,
+            "**/*.code-search": true,
+            "dist/": true,
+            "appraisals/uploads": true,
+            "appraisals/cache": true,
+            "yarn.lock": true,
+            "public/spa": true,
+        },
+        "search.exclude": {
+            "public/assets/": true,
+            "public/_resources/": true,
+            "**/node_modules": true,
+            "**/bower_components": true,
+            "**/*.code-search": true,
+            "yarn.lock": true,
+        },
+        "cSpell.words": [
+            "Previewable",
+            "Rentsmart"
+        ]
+    }
+}

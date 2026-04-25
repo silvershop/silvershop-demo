@@ -22,6 +22,5 @@ $request = HTTPRequestBuilder::createFromEnvironment();
 // Default application
 $kernel = new CoreKernel(BASE_PATH);
 $app = new HTTPApplication($kernel);
-$app->addMiddleware(new ErrorControlChainMiddleware($app));
 $response = $app->handle($request);
 $response->output();
