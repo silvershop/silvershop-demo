@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- Aggregate SilverShop module tests (vendor/silvershop/*). Bootstrap matches those modules' phpunit.xml.dist files. -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="vendor/silverstripe/cms/tests/bootstrap.php"
+         colors="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.3/phpunit.xsd">
+    <testsuites>
+        <testsuite name="silvershop">
+            <directory>vendor/silvershop/coloredvariations/tests</directory>
+            <directory>vendor/silvershop/comparison/tests/unit</directory>
+            <directory>vendor/silvershop/core/tests/php</directory>
+            <directory>vendor/silvershop/discounts/tests</directory>
+            <directory>vendor/silvershop/shipping/tests</directory>
+            <directory>vendor/silvershop/silverstripe-hasonefield/tests</directory>
+            <directory>vendor/silvershop/silverstripe-listsorter/tests/php</directory>
+            <directory>vendor/silvershop/silverstripe-sqlquerylist/tests</directory>
+            <directory>vendor/silvershop/stock/tests/unit</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

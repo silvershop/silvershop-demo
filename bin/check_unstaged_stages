@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$repo_root" ]]; then
+  echo "Error: run this script inside a git repository."
+  exit 2
+fi
+
+cd "$repo_root"
+base_dir="vendor/silvershop"
+
+if [[ ! -d "$base_dir" ]]; then
+  echo "Error: '$base_dir' does not exist."
+  exit 2
+fi
+
+has_changes=0
+
+echo "Scanning ${base_dir}/* for git changes..."
+echo
+
+for package_dir in "$base_dir"/*; do
+  [[ -d "$package_dir" ]] || continue
+
+  package_name="${package_dir##*/}"
+  staged_changes=""
+  unstaged_changes=""
+  untracked_files=""
+
+  if git -C "$package_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    # Handle package folders that are their own git repositories.
+    staged_changes="$(git -C "$package_dir" diff --name-status --cached)"
+    unstaged_changes="$(git -C "$package_dir" diff --name-status)"
+    untracked_files="$(git -C "$package_dir" ls-files --others --exclude-standard)"
+  else
+    # Fall back to changes tracked by the top-level repository.
+    staged_changes="$(git diff --name-status --cached -- "$package_dir")"
+    unstaged_changes="$(git diff --name-status -- "$package_dir")"
+    untracked_files="$(git ls-files --others --exclude-standard -- "$package_dir")"
+  fi
+
+  if [[ -z "$staged_changes" && -z "$unstaged_changes" && -z "$untracked_files" ]]; then
+    continue
+  fi
+
+  has_changes=1
+  echo "== ${package_name} =="
+
+  if [[ -n "$staged_changes" ]]; then
+    echo "-- Staged --"
+    printf '%s\n' "$staged_changes"
+  fi
+
+  if [[ -n "$unstaged_changes" ]]; then
+    echo "-- Unstaged --"
+    printf '%s\n' "$unstaged_changes"
+  fi
+
+  if [[ -n "$untracked_files" ]]; then
+    echo "-- Untracked --"
+    printf '%s\n' "$untracked_files"
+  fi
+
+  echo
+done
+
+if [[ "$has_changes" -eq 0 ]]; then
+  echo "No changes found in ${base_dir}/*."
+  exit 0
+fi
+
+exit 1
