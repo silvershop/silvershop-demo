@@ -28,6 +28,8 @@
     ],
     "scripts": {
         "lint": "phpcs --extensions=php app/ vendor/silvershop/",
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage --coverage-text",
         "syntax-check": "find app/ vendor/silvershop -type f -name '*.php' -exec php -l {} \\;",
         "lint-clean": "phpcbf app/ vendor/silvershop/"
     },
@@ -58,5 +60,8 @@
             "install.php",
             "web.config"
         ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11"
     }
 }

@@ -6,3 +6,4 @@ public/assets/
 public/_resources/
 public/_graphql/
 .graphql-generated
+.phpunit.result.cache
