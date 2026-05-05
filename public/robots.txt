@@ -1,0 +1,5 @@
+# Block indexing of all paths below the site root. Only the homepage URL path
+# "/" is allowed for crawlers that support Allow (e.g. Googlebot).
+User-agent: *
+Allow: /$
+Disallow: /
