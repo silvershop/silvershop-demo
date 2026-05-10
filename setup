@@ -17,7 +17,6 @@ function restore_htaccess () {
 composer update --no-interaction
 
 if [ $? -eq 0 ]; then
-	# Drop the current database, run dev/build to repopulate the database.
 	TABLES=$(mysql silvershopcore -e 'show tables' | awk '{ print $1}' | grep -v '^Tables' )
 
 	for t in $TABLES
@@ -27,7 +26,7 @@ if [ $? -eq 0 ]; then
 	done
 
 	php ./app/src/cli-script-docker-fixed.php db:build
-	php ./app/src/cli-script-docker-fixed.php tasks:populate
+	php ./app/src/cli-script-docker-fixed.php tasks:SilverShop-Tasks-PopulateShopTask
 
 	restore_htaccess
 else
