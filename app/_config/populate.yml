@@ -1,0 +1,8 @@
+---
+Name: populate
+---
+DNADesign\Populate\Populate:
+  include_yaml_fixtures:
+    - 'app/fixtures/populate.yml'
+  truncate_classes: []
+  truncate_tables: []

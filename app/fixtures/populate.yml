@@ -1,0 +1,47 @@
+SilverShop\Model\Variation\AttributeType:
+  demo_pack:
+    Name: Pack size
+    Label: Pack size
+
+SilverShop\Model\Variation\AttributeValue:
+  demo_pack_small:
+    Value: Small pack
+    Type: =>SilverShop\Model\Variation\AttributeType.demo_pack
+  demo_pack_large:
+    Value: Large pack
+    Type: =>SilverShop\Model\Variation\AttributeType.demo_pack
+
+SilverShop\Page\ProductCategory:
+  demoproducts:
+    Title: Demo products
+    URLSegment: demo-products
+    ParentID: 0
+    PopulateMergeMatch:
+      - URLSegment
+
+SilverShop\Page\Product:
+  variationtabledemo:
+    Title: Variation table demo
+    URLSegment: variation-table-demo
+    Parent: =>SilverShop\Page\ProductCategory.demoproducts
+    BasePrice: 19.99
+    AllowPurchase: 1
+    VariationAttributeTypes: =>SilverShop\Model\Variation\AttributeType.demo_pack
+    PopulateMergeMatch:
+      - URLSegment
+
+SilverShop\Model\Variation\Variation:
+  demovar_small:
+    InternalItemID: DEMO-TABLE-S
+    Product: =>SilverShop\Page\Product.variationtabledemo
+    Price: 19.99
+    AttributeValues: =>SilverShop\Model\Variation\AttributeValue.demo_pack_small
+    PopulateMergeMatch:
+      - InternalItemID
+  demovar_large:
+    InternalItemID: DEMO-TABLE-L
+    Product: =>SilverShop\Page\Product.variationtabledemo
+    Price: 24.99
+    AttributeValues: =>SilverShop\Model\Variation\AttributeValue.demo_pack_large
+    PopulateMergeMatch:
+      - InternalItemID

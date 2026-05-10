@@ -3,10 +3,18 @@
     "require": {
         "silvershop/recipe": "^6",
         "silvershop/coloredvariations": "^3",
+        "silvershop/bundles": "^1",
         "silverstripe-themes/simple": "^3",
         "omnipay/dummy": "^3",
-        "dnadesign/silverstripe-populate": "dev-master",
-        "php-http/guzzle7-adapter": "1.x-dev"
+        "dnadesign/silverstripe-populate": "dev-main",
+        "php-http/guzzle7-adapter": "1.x-dev",
+        "larapack/dd": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "app/src/Page.php",
+            "app/src/PageController.php"
+        ]
     },
     "config": {
         "process-timeout": 1200,
