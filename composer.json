@@ -2,7 +2,6 @@
     "type": "silverstripe-project",
     "require": {
         "silvershop/recipe": "^6",
-        "silvershop/coloredvariations": "^3",
         "silvershop/bundles": "^1",
         "silverstripe-themes/simple": "^3",
         "omnipay/dummy": "^3",
