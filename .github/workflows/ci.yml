@@ -1,0 +1,172 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # Dependencies float (no committed composer.lock and silvershop/* track
+  # dev-main), so check daily that upstream changes haven't broken the demo.
+  schedule:
+    - cron: '0 18 * * *'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PHP_VERSION: '8.5'
+  PHP_EXTENSIONS: intl, gd, bcmath, mysqli, pdo_mysql, zip
+
+jobs:
+  test:
+    name: Build & smoke test
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: silvershop
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --no-check-publish --no-check-lock
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Lint PHP
+        run: find app -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Configure environment
+        run: |
+          cat > .env <<'EOF'
+          SS_ENVIRONMENT_TYPE="dev"
+          SS_DATABASE_CLASS="MySQLDatabase"
+          SS_DATABASE_SERVER="127.0.0.1"
+          SS_DATABASE_PORT="3306"
+          SS_DATABASE_USERNAME="root"
+          SS_DATABASE_PASSWORD="root"
+          SS_DATABASE_NAME="silvershop"
+          SS_BASE_URL="http://127.0.0.1:8080"
+          SS_DEFAULT_ADMIN_USERNAME="admin"
+          SS_DEFAULT_ADMIN_PASSWORD="password"
+          EOF
+
+      # Mirrors what ./setup runs on the server after every deploy and hourly reset.
+      - name: Build database
+        run: vendor/bin/sake db:build --flush
+
+      - name: Populate shop
+        run: vendor/bin/sake tasks:SilverShop-Tasks-PopulateShopTask
+
+      - name: Smoke test pages
+        run: |
+          php -S 127.0.0.1:8080 -t public public/index.php > /tmp/php-server.log 2>&1 &
+          for i in $(seq 1 20); do curl -s -o /dev/null http://127.0.0.1:8080/ && break; sleep 1; done
+
+          status=0
+          for path in / /products/ /cart/ /Security/login; do
+            code=$(curl -s -o /tmp/page.html -w '%{http_code}' "http://127.0.0.1:8080${path}")
+            echo "${path} -> ${code}"
+            if [ "$code" -ge 500 ]; then
+              status=1
+              head -c 4000 /tmp/page.html
+            fi
+          done
+
+          if [ "$status" -ne 0 ]; then
+            echo "--- PHP server log ---"
+            cat /tmp/php-server.log
+          fi
+          exit $status
+
+  deploy:
+    name: Deploy to demo.silvershop.io
+    needs: test
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://demo.silvershop.io
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+
+    env:
+      DEPLOY_HOST: kobe.fullscreen.io
+      DEPLOY_USER: silvershopcore
+      DEPLOY_PATH: /container/application
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+
+      # Server-only files (.env, uploaded assets, caches) are excluded so
+      # --delete never touches them.
+      - name: Sync files
+        run: |
+          rsync -az --delete --stats \
+            --exclude='/.git/' \
+            --exclude='/.github/' \
+            --exclude='/.ddev/' \
+            --exclude='/.env' \
+            --exclude='/.beamlog' \
+            --exclude='/beam-*.excludes' \
+            --exclude='/silverstripe-cache/' \
+            --exclude='/public/assets/' \
+            --exclude='/public/.htaccess-backup' \
+            --exclude='*.tmp' \
+            --exclude='errors.log' \
+            --exclude='install.php' \
+            ./ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+
+      - name: Run setup
+        run: ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd '${DEPLOY_PATH}' && ./setup"
+
+      - name: Check site is up
+        run: |
+          for i in $(seq 1 10); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://demo.silvershop.io/)
+            echo "attempt ${i}: ${code}"
+            [ "$code" = "200" ] && exit 0
+            sleep 15
+          done
+          exit 1

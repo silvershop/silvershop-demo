@@ -38,19 +38,26 @@ ddev sake db:build
 
 ## Hosting
 
-The demo is managed by Wilr @ [Fullscreen.io](https://www.fullscreen.io). If you
-would like to help manage the demo please email your SSH key. Deployment to the
-container is done via [Beam](https://github.com/heyday/beam) and you must have
-a SSH alias setup as the following
+The demo is managed by Wilr @ [Fullscreen.io](https://www.fullscreen.io).
 
-```
-Host silvershop
-  User silvershopcore
-  HostName kobe.fullscreen.io
-  ForwardAgent true
-```
+Deployment is handled by GitHub Actions (`.github/workflows/ci.yml`). Every
+push to `main` runs the build and smoke test, and if that passes the `deploy`
+job:
 
-Then deployment is triggered by `beam up prod`
+1. Runs `composer install` on the runner.
+2. Rsyncs the project to `/container/application` on `kobe.fullscreen.io`
+   (server-only files such as `.env` and `public/assets/` are excluded).
+3. Runs `./setup` on the server, then checks the site returns a 200.
+
+A deploy can also be started manually from the Actions tab (**Run workflow**).
+The job uses the `production` environment, which needs these secrets:
+
+- `DEPLOY_SSH_KEY`: private key whose public half is in the
+  `silvershopcore` user's `~/.ssh/authorized_keys`
+- `DEPLOY_KNOWN_HOSTS`: output of `ssh-keyscan kobe.fullscreen.io`
+
+CI also runs daily, because dependencies are not locked and `silvershop/*`
+modules track `dev-main`.
 
 ### Cron job
 
@@ -60,9 +67,9 @@ see [Hosting](#hosting)). It is scheduled to run **at minute 0 of every hour**
 (i.e. `0 * * * *` in cron syntax—confirm the live entry with whoever maintains
 the container).
 
-From the application root on the server (`/container/application`, matching
-`webroot` in `beam.json`), the job runs the same **`setup`** script that Beam
-executes after a deploy (`phase: post` in `beam.json`). That script:
+From the application root on the server (`/container/application`), the job
+runs the same **`setup`** script that the GitHub Actions deploy runs. That
+script:
 
 1. Puts the site into a short “updating” state by swapping `public/.htaccess`
    for `public/.htaccess-updating`.
