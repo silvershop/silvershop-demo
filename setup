@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 #
+# Run from the project root regardless of the caller's working directory
+# (cron starts in $HOME).
+#
+cd "$(dirname "$0")" || exit 1
+
+#
 # Redirect all traffic to the demo is resyncing
 #
 mv "public/.htaccess" "public/.htaccess-backup"
