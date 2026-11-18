@@ -1,13 +1,13 @@
 {
     "type": "silverstripe-project",
     "require": {
-        "silvershop/recipe": "^6",
+        "silvershop/recipe": "^6.0.1",
         "silvershop/bundles": "^1",
         "silverstripe-themes/simple": "^3",
         "omnipay/dummy": "^3",
-        "dnadesign/silverstripe-populate": "dev-main",
-        "php-http/guzzle7-adapter": "1.x-dev",
-        "larapack/dd": "dev-master"
+        "dnadesign/silverstripe-populate": "^4.1",
+        "php-http/guzzle7-adapter": "^1.1",
+        "larapack/dd": "^1.1"
     },
     "autoload": {
         "classmap": [
@@ -28,12 +28,7 @@
         }
     },
     "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:silvershop/recipe-silvershop.git"
-        }
-    ],
+    "prefer-stable": true,
     "scripts": {
         "lint": "phpcs --extensions=php app/ vendor/silvershop/",
         "test": "phpunit",
